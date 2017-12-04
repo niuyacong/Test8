@@ -1,0 +1,19 @@
+.BackgroundColor{background: #274d76;}
+.BackgroundColorJ{
+	background: -webkit-linear-gradient(#274d76, #141e30); /* Safari 5.1 - 6.0 */
+    background: -o-linear-gradient(#274d76, #141e30); /* Opera 11.1 - 12.0 */
+    background: -moz-linear-gradient(#274d76, #141e30); /* Firefox 3.6 - 15 */
+    background: linear-gradient(#274d76, #141e30); /* 标准的语法（必须放在最后） */
+}
+.ColorWhite{color: #fff;}
+.FontColor{color: #b1d1e8;}
+.FontColor1{color: #1C2B36;}
+.FontColor2{color: #0ec997;}/*绿色*/
+
+
+.FontTwenty-two{font-size: 22px;}
+.FontTwenty{font-size: 20px;}
+.FontEighteen{font-size: 18px;}
+.FontSixteen{font-size: 16px;}
+.FontFourteen{font-size: 14px;}
+

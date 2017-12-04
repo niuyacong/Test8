@@ -1,0 +1,2 @@
+2017-06-16 13:12:12,359 ERROR Test.Controllers.LogController - 测试System.Exception: 引发类型为“System.Exception”的异常。
+   在 Test.Controllers.LogController.Test() 位置 e:\牛亚聪\勿动\Test8\Test\Controllers\LogController.cs:行号 27

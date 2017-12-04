@@ -1,0 +1,5 @@
+F:\牛亚聪\Test8-master\NunitTest\bin\Debug\NunitTest.dll
+F:\牛亚聪\Test8-master\NunitTest\bin\Debug\NunitTest.pdb
+F:\牛亚聪\Test8-master\NunitTest\obj\Debug\NunitTest.csprojResolveAssemblyReference.cache
+F:\牛亚聪\Test8-master\NunitTest\obj\Debug\NunitTest.dll
+F:\牛亚聪\Test8-master\NunitTest\obj\Debug\NunitTest.pdb

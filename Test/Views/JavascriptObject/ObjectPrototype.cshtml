@@ -1,0 +1,214 @@
+﻿@{
+    ViewBag.Title = "ObjectPrototype";
+}
+
+@*对象的属性*@
+<script type="text/javascript">
+    //例1
+    function Product(name) {
+        this.name = name;
+    }
+    Product.prototype.name = '音响';
+    var p1 = new Product('相机');
+    console.log(p1.name);//相机  自身属性高于原型属性
+
+    delete p1.name;
+    console.log(p1.name);//相机
+
+
+    p1.name = '手机';
+    console.log(p1.name);//手机
+
+    //例2
+    var obj = {
+        username: 'king',
+        age: 12,
+        addr: '北京',
+        email: '123@qq.com'
+    };
+    for (var i in obj) {
+        console.log(obj[i]);//4个属性，for  in  包含继承的属性
+    }
+
+    //例3 for  in  包含继承的属性
+    function Product(name, color) {
+        this, name = name;
+        this.color = color;
+        this.someMethod = function () {
+            return 'this is a test';
+        }
+    }
+    Product.prototype.price = 1234;
+    Product.prototype.memory = 32;
+    var p1 = new Product('苹果手机', '白色');
+    for (var p in p1) {
+        console.log(p);//5个属性  自身3个加原型2个
+    }
+
+    //只寻找自身属性
+    for (var p in p1) {
+        if (p1.hasOwnProperty(p)) {
+            console.log(p);//3个
+        }
+    }
+
+    //例4.1
+    var monkey = {
+        hair: true,
+        feeds: '香蕉',
+        breathes: 'air'
+    };
+    function Human(name) {
+        this.name = name;
+    };
+    Human.prototype = monkey;
+    var person1 = new Human('king');
+    console.log(person1.name);
+
+    console.log(monkey.isPrototypeOf(p1));//是不是原型 true
+
+    //例4.2
+    var person2 = new Human('queen');
+    person2.feeds = '火锅';
+    person2.learn = 'js课程';
+    console.log(person2.learn);//js 课程
+    console.log(person2.feeds);//火锅
+    console.log(person2.name);//queen
+    console.log(person2.breathes);//air
+    person2.constructor = 'this is a test';
+    console.log(person2._proto_);//输出Human(person2的原型)
+    console.log(person2.constructor);//this is a test
+
+    monkey.test = 'hello maizi';
+    console.log(person2.test);//hello maizi 在原型上找
+
+    console.log(typeof person2._proto_);
+    console.log(typeof Human.prototype);
+
+
+   
+    function Person(name) {
+        this.name = name
+    }
+    var p = new Person('jack')
+    console.log(p.__proto__ === Person.prototype) // true
+    //p是Person的实例对象，p的内部原型总是指向其构造器Person的prototype。
+</script>
+
+
+@*prototype、constructor案例说明*@
+//http://www.cnblogs.com/longbaobao/articles/2000685.html
+
+
+@*对象的原型属性prototype*@
+<script type="text/javascript">
+    function foo(a,b){
+        return a*b;
+    }
+    console.log(foo.length);//参数的个数
+
+    console.log(foo.constructor);//function
+
+    console.log(foo.prototype);//foo{}
+
+    foo.prototype = {};
+
+
+    function product(name, color) {
+        this.name = name;
+        this.color = color;
+        this.whatareyou = function () {
+            return 'this is a ' + this.color + ' ' + this.name;
+        }
+    }
+
+    product.prototype.price = 200;
+    product.prototype.rating = 3;
+    product.prototype.getInfo = function () {
+        return '等级' + this.rating + '--价钱：' + this.price;
+    }
+    //或者
+    product.prototype = {
+        price: 200,
+        rating: 3,
+        memory: 64,
+        getInfo: function () {
+            return '等级' + this.rating + '--价钱：' + this.price;
+        }
+    };
+
+    //调用
+    var p1 = new product('iphone6', '玫瑰金');
+    console.log(p1.name);//iphone6
+    console.log(p1.color);//玫瑰金
+    console.log(p1.whatareyou());//'this is a 玫瑰金 iphone6
+    console.log(p1.price);//200
+    console.log(p1.memory);//64
+    console.log(p1.getInfo());
+
+    //在已经引用对象的前提下，添加方法
+    product.prototype.get = function (what) {
+        return this[what];
+    }
+    //仍然可以访问
+    console.log(p1.get('name'));//iphone6
+
+    //直接访问属性,之前访问通过this
+    product.prototype.getInfo = function () {
+        return 'memory:' + product.prototype.memory;
+    }
+
+    var p2 = new product('macbookpro', '土豪金');
+    product.prototype.price = 14888;
+    product.prototype.memory = 256;
+    console.log(p2.getInfo());//memory:256
+    console.log(p2.memory);//256
+
+    console.log(p2.toString());//[object,object]
+</script>
+
+@*扩展内建对象*@
+<script type="text/javascript">
+    //扩展string对象，实现字符反转功能
+    String.prototype.reverse = function () {
+        return Array.prototype.reverse.apply(this.split('')).join('');
+
+    }
+
+    console.log('maizi'.reverse());//iziam
+
+    //检测方法是否存在，不存在则扩展
+    if (!Array.prototype.inArray) {
+        Array.prototype.inArray = function (needle) {
+            for (var i = 0, len = this.length; i < len; i++) {
+                if (this[i] == needle) {
+                    return true;
+                }
+            }
+            return false;
+        }
+    }
+    var arr = ['a', 'b', 'c', 'd'];
+    console.log(arr.inArray('b'));//true
+    console.log(arr.inArray('C'));//false
+
+
+    //prototype.js  yui
+
+    function person() {
+        this.mouth = true;
+    }
+    var p1 = new person();
+    var p2 = new person();
+    person.prototype.say = function () {
+        return 'hello';
+    }
+    console.log(p1.say());//hello
+    console.log(p2.say());//hello
+
+    console.log(p1.constructor);//构造器//functon person()
+    console.log(p1.constructor.prototype.constructor);//???functon person()
+
+    console.log(p1.constructor.prototype.mouth);//undefined mouth是对象自有的
+
+</script>

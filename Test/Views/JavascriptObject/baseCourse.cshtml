@@ -1,0 +1,385 @@
+﻿@{
+    ViewBag.Title = "baseCourse";
+}
+
+<h2>baseCourse</h2>
+@*声明变量的书写要求：一段代码中只有一种书写格式*@
+<script type="text/javascript">
+    //大驼峰
+    var FirstName = "姓氏";
+    //小驼峰
+    var firstName = "姓氏";
+    //下划线法
+    var first_name = "姓氏";
+</script>
+
+@*变量在内存中的存储与释放*@
+<script type="text/javascript">
+    //收集方式
+    //收集内容
+    //回收算法
+</script>
+
+@*变量数据类型*@
+<script type="text/javascript">
+    //1:isNaN() 判断是不是NaN,不能和自身比较
+    //转义符
+    //  \' :单引号 \n :换行 。。
+</script>
+
+@*类型转换*@
+<script type="text/javascript">
+    //转换成boolean为false的情况
+    Boolean(0);
+    Boolean(-0);
+    Boolean(NaN);
+    Boolean(undefined);
+    Boolean('');
+    Boolean(0.0);
+    //其他情况为true
+
+    //其他类型转换成数值型
+    Number(12);//12
+    Number(true);//1 false:0
+    Number(undefined);//NaN
+    Number(NaN);//NaN
+    Number(null);//0
+    Number('8k');//NaN '8':8
+
+    //parseInt转换成整形
+    parseInt('123');//123  默认是十进制  0x开头：转换成16进制  0开头：8进制或十进制
+    parseInt(12, 2);//2:2进制
+    parseInt('3kds');//3
+    //不能被转换的string,会显示NaN  前后有空格是允许的，中间有空格不允许
+
+    //转换成浮点型的值parseFloat
+    parseFloat(123.34);
+    parseFloat('lalal');//NaN
+</script>
+
+@*表达式与运算符*@
+<script type="text/javascript">
+    /*算数运算符*/
+    //+ - * / % ++ --
+
+    //字符串+数值型=字符串
+    //数值型转字符串
+    var i = 9;
+    var j = '' + i;//j是字符串了
+    ++i;//先执行+1
+    i++;//后执行-1
+    //数值型、浮点型、boolean、null(默认是0) 都支持++ --
+    //NaN:not a number
+
+    /*字符连接符+*/
+
+    /*赋值运算符+= -= *= /= %=  */
+    var a = 1;
+    a += 3;//a=a+3;
+
+    // ==只比较值，===比较值和类型
+    //0==null  false
+    //NaN 不能和自己比较
+
+    /*逻辑运算符 && & || ！*/
+    //&& 第一个表达式为false时，第二个表达式不执行
+    // || 第一个表达式为true时，第二个表达式不执行
+
+    /*三元运算符 exp?exp1:exp2 */
+
+    /*void 运算符 */
+    var z = (n = 1, m = 2, p = 3);//z=3
+    z = void (n = 1, m = 2, p = 3);//undefined
+
+    /*typeof运算符：返回类型*/
+    var x = typeof null;//object
+</script>
+
+@*流程控制*@
+<script type="text/javascript">
+    //if  else   
+    //if else if
+    //switch case
+    //for 通过break结束for循环  continue :代表跳过当次循环，进入下次循环
+    //while(){}   do{}while();
+
+</script>
+
+
+@*函数*@
+
+<script type="text/javascript">
+    /*
+    1、函数名称区分大小写
+    2、函数名重复会覆盖
+    3、函数返回值没有加return,返回undefined
+    */
+
+    /*函数的参数*/
+    function test() {
+        arguments[0];//arguments:函数传入的参数是一个数组
+        arguments.length;//函数参数的个数
+    }
+
+    /*全局变量和局部变量*/
+    function a() {
+        var x = 0;//局部变量
+        y=1;//全局变量
+    }
+</script>
+
+@*全局函数*@
+<script type="text/javascript">
+    /*
+    1、parseInt();
+    2、parseFloat();
+    3、isFinite();检测是否是无穷值  x = Infinity; x = -Infinity; x = NaN;
+    4、isNaN(NaN);检测是否是数值
+    */
+    
+
+    /*编码*/
+    /*1、url*/
+    var url = "http://www.baidu.com?search=测试";
+    var encodeurl=encodeURI(url);  //对url编码，但是不会对ASCII字母和数字进行编码：-_ ! & ~ * ’ （） /
+    var decode = decodeURI(encodeurl);//对url解码
+
+    var com = encodeURIComponent(url);//对url编码，对ASCII字母和数字进行转义：-_ ! & ~ * ’ （） /
+
+    decode = decodeURIComponent(com);//对encodeURIComponent编码后的解码
+
+    /*2、字符串编码*/
+    var str = "hello world??//";
+    var escape = escape(str);
+    //1、escape编码可以跨平台
+    //2、不会对ASCII字母和数字进行编码：-_ ! & ~ * ’ （） /
+    //3、不能用于对url编码
+    var unescape = unescape(escape);//解码
+
+    /*eval:将字符串转化成javascript脚本*/
+    //1、eval 将执行脚本  危险性高，尽量不使用，保证程序的安全性，比直接执行脚本慢很多
+
+
+    /*Number*/
+    //将对象转换为数值型  如果对象是Date,将返回到1970-1-1 经历的毫秒数
+
+    /*String()、toString()*/
+</script>
+
+@*特殊形式的函数*@
+<script type="text/javascript">
+    //可以赋值给变量
+    function test() {
+        return 1;
+    }
+    var a = test();
+
+    //匿名函数
+    var test1 = function (x) {
+        return x;
+    }
+    alert(test1(2));
+
+    //回调函数
+    function test(a,b) {
+        return a() + b();
+    }
+    function test1() {
+        return 1;
+    }
+    function test2() {
+        return 2;
+    }
+    alert(test(test1, test2));
+    //一个例子：
+    function test(a, b, c, callback) {
+        var i, a = [];
+        for (var i = 0; i < 3; i++) {
+           a[i]= callback(arguments[i] * 2);
+        }
+    }
+    function add(a) {
+        return a + 1;
+    }
+    test(10, 20, 30, add);
+    //或者 使用匿名函数
+    test(10, 20, 30, function (a) { return a + 1 });
+
+    /*回调函数*/
+    function test1(a, b) {
+        return a * b;
+    }
+    //call
+    alert(test1.call(test1, 5, 10));//50
+    //apply
+    var param=[5,10];
+    alert(test1.apply(test1, param));//50
+
+    /*自调函数*/
+    //自调函数不会产生任何全局变量
+    //适用于初始化的任务，只执行一次
+    (
+    function () {
+        alert("llala");
+    }
+    )();
+
+    (function (a, b) {
+        alert(a + b);
+    })(2,3);
+</script>
+
+
+@*数组*@
+<script type="text/javascript">
+    /*创建数组*/
+    //数组直接量创建数组
+    var arr = [];
+    var arr1 = [1, 2, 34, 5, 4]
+    var x = 1;
+    var arr2 = [x, x * 1, x * 2]
+    var arr3 = [1, , 3];//[1,undefined,3]
+
+    //通过构造函数Array()创建数组
+    var a = new Array();//[]
+    var a1 = new Array(5);//数组的长度是5
+    var a2 = new Array(1, 2, undefined, null, "lal");
+
+    var array = [1, 2, 3, 4];
+    //取
+    array[0];
+    //修改
+    array[0] = "啦啦";
+    //增加
+    array[4] = 4;
+    //通过索引变量取值
+    var x = 2;
+    array[x];//3
+
+
+    //数组默认属性的设置
+    arr = [1, 2, 3]
+    Object.defineProperty(arr, "length", {
+        writable: false
+    });
+
+    //添加在数组的结尾添加
+    arr.push("c");
+    //删除
+    arr.pop();//数组最后删除
+
+    arr.unshift(1, 1, 2);//在数组的开头添加
+    arr.shift();//删除数组开头的值
+
+    //通过delete删除数组中的值，数组的长度不变
+    delete arr[0];
+
+    /*遍历*/
+    //1、连续的
+    var arr = [1, 2, 3, 5];
+    for (var i = 0; i < arr.length; i++) {
+        alert(arr[i]);
+    }
+    //2、不连续的
+    var arr1 = [];
+    arr1[22] = 'x';
+    arr1[34] = 'y';
+    arr1[44] = 'z';
+    for (var i in arr1) {
+        alert(arr1[i]);
+    }
+    //forEach
+    var arr2 = [3, 4, 6, 7, 5, 8];
+    arr2.forEach(function (x) {
+        alert(x);
+    })
+
+    function test(element, index, array) {
+        alert("索引为" + index + "的值为：" + element);
+
+    }
+    arr2.forEach(test);
+
+    /*数组常用方法*/
+    var arr = [3, 4, 6, 7, 5, 8];
+    //将arr值以什么符号拼接成字符串
+    arr.join(',');//3, 4, 6, 7, 5, 8
+
+
+    //倒序排序
+    arr.reverse();//[8,7,6,5,4,3]
+
+
+    //排序,按unicode的排序
+    var arr = ['a', 'b', 'c', 'A', 'B', 'C']
+    arr.sort();//['A','B','C','a','b','c']
+
+    arr = [1, 2, 11, 20];
+    arr.sort();//[1,11,2,20]
+
+    arr.sort(function (a, b) {
+        return a - b;//从小到大  b-a:从大到小  >0  <0  ==0
+    })
+
+    //连接
+    arr = [1, 2, 3];
+    arr.concat(4, 5, 6);// [1, 2, 3,4,5,6]
+    arr.concat([4, 5, 6]);// [1, 2, 3,4,5,6]
+    arr.concat([4, 5, 6], [7]);//[1, 2, 3,4,5,6,7]
+    arr.concat([4, [12, [13]]]);//[1, 2, 3,4,Array]
+
+    //返回数组中某一部分 可以是负数
+    arr = [1, 2, 3];
+    arr.slice(0, 2);//从0开始，到哪里结束（不包含） [1,2]
+    
+    //取出数组中的，数组中就没有了
+    arr = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h']
+    arr.splice(0, 1);//['a']  从0开始，截取1个长度，数组中就没有这个了
+    arr;//[ 'b', 'c', 'd', 'e', 'f', 'g', 'h']
+    arr.splice(2);//从2开始，删除后面的，包括2
+    arr.splice(0, 2, '!', '?');//从0开始，删除2个长度，这个删除的位置用“！？”代替
+
+    //对数组中的每一个元素进行更改
+    arr = [1, 2, 3, 4, 5, 6];
+    var arr1=arr.map(function(x){
+        return x * x;
+    });//[1,4,9,16,25,36]
+
+    //过滤数组中的元素
+    arr = [1, 2, 3, 4, 5, 6, 44, 22, 44, 222];
+    var res = arr.filter(function (x) {
+        return x <= 10;
+    })//[1, 2, 3, 4, 5, 6];
+
+    //累加器,元素从左到右 
+    var arr = [1, 2, 3, 4, 5, 6];
+    res = arr.reduce(function (a, b) {
+        return a + b;
+    })//21
+    arr.reduceRight(function (a, b) {//元素从右到左
+        return a + b;
+    })//21
+
+    //每个都符合要求，返回true,否则返回false
+    res = arr.every(function (x) {
+        return x > 10;
+    });//false
+    //有满足要求的就可以
+    res = arr.some(function (x) {
+        return x > 10;
+    });//false
+
+    //indexOf
+    arr = ['a', 'b', 'c', 'd', 'a', 'f', 'g', 'h'];
+    res = arr.indexOf('a');//0
+    res = arr.indexOf('A');//-1
+    res = arr.indexOf('d', 2);//4
+    res = arr.lastIndexOf('a');//4
+
+    //是否是数组
+    Array.isArray(arr);//true
+
+    //toString()功能和join一样
+    arr = ['a', 'b', 'c', 'd'];
+    arr.toString();//a,b,c,d
+</script>

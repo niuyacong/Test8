@@ -1,0 +1,206 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+<!--静态页面-->
+@MvcHtmlString.Create(ViewBag.navigationButton)
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- viewport的<meta>标签，这个标签可以修改在大部分的移动设备上面的显示，为了确保适当的绘制和触屏缩放。-->
+    <title>无标题文档</title>
+    <!--样式文件引用-->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+          <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+          <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+        <![endif]
+    IE9以下的浏览器并不支持这些标签，也不能为这些标签进行添加样式。那么修复这个问题我们需要链接引用的文件
+    意思就是说如果用户IE浏览器的版本小于IE9，那么就会加载这两个js文件库，现在就可以使用这些新的标签，并且可以在这些标签上添加样式了
+    -->
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+    <link rel="stylesheet" type="text/css" href="css/index.css" />
+    <link rel="stylesheet" type="text/css" href="css/Organization.css" />
+    <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+    <script src="http://libs.baidu.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <div class="container-fluid" style="min-width: 1360px;overflow: auto;height: 100%;">
+        <div class="col-xs-12 level">
+            <div class="col-xs-4">
+                <button type="submit" class="increasebtn text-center AddElement">增加</button>
+            </div>
+
+        </div>
+        <div class="col-xs-12">
+            <div class="col-xs-6">
+                <div class="col-xs-12 " style="padding: 0;">
+
+
+                    <div class="panel-group" id="accordion">
+                        <div class="panel panel-default public-ti">
+                            <div class="panel-heading company Company-title public" data-toggle="collapse" data-parent="#accordion" data-target="#collapseOne">
+                                <input type='text' value='江鸟公司' class='Name-input' readonly="true" style="border: none;background: #fff;" />
+                                <div class="pull-right"><a href="##" class='modify-input'>修改</a><a href="##" class='delete-input'>删除</a><span></span>	</div>
+                            </div>
+                            <div id="collapseOne" class="panel-collapse collapse" style="width: 100%;">
+                                <div class="panel-body public" data-toggle="collapse" data-target="#collapseMarket">
+                                    <img src="img/fff.jpg" class="fff" />
+                                    <img src="img/grey_squares.png" class="rhomb-img" />
+                                    <!--<input type='text' value='市场部' class='Name-input' readOnly="true" style="border: none;background: #fff;"/>-->
+                                    <select>
+                                        <option selected="selected">江鸟</option>
+                                        <option>丰收</option>
+                                        <option>测试</option>
+                                    </select>
+                                    <div><a href="##" class='modify-input'>修改</a><a href="##" class='delete-input'>删除</a><span></span></div>
+                                </div>
+                                <div id="collapseMarket" class="panel-collapse collapse">
+                                    <div class="Market-body public" data-toggle="collapse" data-target="#collapseRegion">
+                                        <img src="img/fff.jpg" class="fff" />
+                                        <img src="img/grey_squares.png" class="rhomb-img" />
+                                        <input type='text' value='江西大区' class='Name-input' readonly="true" style="border: none;background: #fff;" />
+                                        <div><a href="##" class='modify-input'>修改</a><a href="##" class='delete-input'>删除</a><span></span></div>
+                                    </div>
+                                    <div id="collapseRegion" class="panel-collapse collapse">
+                                        <div class="Region-body public">
+                                            <img src="img/fff.jpg" class="fff" />
+                                            <img src="img/grey_squares.png" class="rhomb-img" />
+                                            <input type='text' value='江西江西' class='Name-input' readonly="true" style="border: none;background: #fff;" />
+                                            <div><a href="##" class='modify-input'>修改</a><a href="##" class='delete-input'>删除</a><span></span></div>
+                                        </div>
+                                    </div>
+                                    <div class="Market-body public">
+                                        <img src="img/fff.jpg" class="fff" />
+                                        <img src="img/grey_squares.png" class="rhomb-img" />
+                                        <input type='text' value='江西大区' class='Name-input' readonly="true" style="border: none;background: #fff;" />
+                                        <div><a href="##" class='modify-input'>修改</a><a href="##" class='delete-input'>删除</a><span></span></div>
+                                    </div>
+                                    <div class="Market-body public">
+                                        <img src="img/fff.jpg" class="fff" />
+                                        <img src="img/grey_squares.png" class="rhomb-img" />
+                                        <input type='text' value='江西大区' class='Name-input' readonly="true" style="border: none;background: #fff;" />
+                                        <div><a href="##" class='modify-input'>修改</a><a href="##" class='delete-input'>删除</a><span></span></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-default public-ti" style="margin-top: -1px;border-top: none;">
+                            <div class="panel-heading company Company-title public" data-toggle="collapse" data-parent="#accordion" data-target="#collapsetwo">
+                                <input type='text' value='江鸟公司' class='Name-input' readonly="true" style="border: none;background: #fff;" />
+                                <div class="pull-right"><a href="##" class='modify-input'>修改</a><a href="##" class='delete-input'>删除</a><span></span>	</div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-xs-6" style="padding-left:20px ;">
+                <div class="col-xs-12 " style="padding: 0;">
+                    <div class="synopsis BackgroundColor ColorWhite">
+                        简介
+                    </div>
+                    <div class="synopsis-content">
+                        <!--<input type="text" name="" id="" value="" />-->
+                        <textarea cols="4" class="FontFourteen FontColor1" placeholder="请输入简介"></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</body>
+<script src="js/index.js" type="text/javascript"></script>
+</html>
+<!--静态页面结束-->
+<!--脚本-->
+<script type="text/javascript">
+    function panelheading(obj) {
+        $(".public-element").removeClass("public-element");
+        $(obj).addClass('public-element');
+        $(obj).children("div").children("span").toggleClass("rotate");
+        $(obj).removeClass("panel-heading-b");
+        $(obj).siblings('.panel-heading').removeClass('panel-heading-b'); // 删除其他兄弟元素的样式
+        $(obj).toggleClass('panel-heading-b');// 添加当前元素的样式
+        $("#produce").val($(obj).attr("names"));
+    }
+    function panelbody(obj) {
+        $(".public-element").removeClass("public-element");
+        $(obj).addClass('public-element');
+        $("#produce").val($(obj).attr("names"));
+        $(obj).children("div").children("span").toggleClass("rotate");
+    }
+</script>
+<!--脚本结束-->
+<!--添加、修改的拼接HTML-->
+<script type="text/javascript">
+    //增加部门
+    function SysOrganizationAdd() {
+        if ($("button.col-btm-10").parent().parent().parent('.container-fluid').find(".public-element").length == 0) {
+            //SubMit("", "Company");
+            $.get("/Organization/AddSysOrganization", { name: "", description: "", parentID: "", organizationTypeCode: "Company" }, function (data) {
+                if (data > 0) {
+                    //setTimeout(1000);
+                    //if (Id > 0) {
+                    var str = " <div class=\"panel panel-default public-ti\" ><div class=\"panel-heading company Company-title public\" data-toggle=\"collapse\" data-parent=\"#accordion\" data-target=\"#" + Id + "a\" ids=\"" + Id + "\"><input type='text' value='' class='Name-input' readOnly=\"true\" style=\"border: none;background: #fff;\"/><div class=\"pull-right\"><a href=\"javascript:void(0)\" class='modify-input' onclick='SysOrganizationUpdate(" + Id + ",this)'>修改</a><a href=\"javascript:void(0)\" class='delete-input' onclick='SysOrganizationDelete(" + Id + ",this)'>删除</a><span></span>	</div></div></div>";
+                    $("div.panel-group").find(".public-ti").append(str);
+                }
+            });
+        } else {
+            var parentId = $("button.col-btm-10").parent().parent().parent('.container-fluid').find(".public-element").last().attr("ids");
+            var ids = parentId + "a";
+            //SubMit(parentId, "Department");
+            $.get("/Organization/AddSysOrganization", { name: "", description: "", parentID: parentId, organizationTypeCode: "Department" }, function (data) {
+                if (data > 0) {
+                    //setTimeout(2000);
+                    //if (Id > 0) {
+                    if ($("button.col-btm-10").parent().parent().parent('.container-fluid').find(".public-element").last().next("div[id=" + parentId + "a]").length >= 1) {
+                        alert(44);
+                        var str = "<div  class=\"panel-body public\" data-toggle=\"collapse\" data-target=\"#" + Id + "a\" onclick=\"panelbody(this)\" names=\"\" ids=\"" + Id + "\">";
+                        str += "<img src=\"/Content/images/fff.jpg\" class=\"fff\"/>";
+                        str += "<img src=\"/Content/images/grey_squares.png\" class=\"rhomb-img\"/>";
+                        str += "<input type='text' value='' class='Name-input' readOnly='true' style='border: none;background: #fff;'/>";
+                        str += "<div class=\"pull-right\"><a href=\"javascript:void(0)\" class='modify-input' onclick='SysOrganizationUpdate(" + Id + ",this)'>修改</a><a href=\"javascript:void(0)\" class='delete-input' onclick='SysOrganizationDelete(" + Id + ",this)'>删除</a><span></span>	</div></div>";
+                        $("button.col-btm-10").parent().parent().parent('.container-fluid').find(".public-element").next("div[id=" + parentId + "a]").append(str);
+
+                    } else {
+                        var str = "<div id=\"" + parentId + "a\" class=\"panel-collapse collapse  collapseOne\" >";
+                        str += "<div  class=\"panel-body public\" data-toggle=\"collapse\" data-target=\"#" + Id + "a\" onclick=\"panelbody(this)\" names=\"\" ids=\"" + Id + "\">";
+                        str += "<img src=\"/Content/images/fff.jpg\" class=\"fff\"/>";
+                        str += "<img src=\"/Content/images/grey_squares.png\" class=\"rhomb-img\"/>";
+                        str += "<input type='text' value='' class='Name-input' readOnly='true' style='border: none;background: #fff;'/>";
+                        str += "<div class=\"pull-right\"><a href=\"javascript:void(0)\" class='modify-input' onclick='SysOrganizationUpdate(" + Id + ",this)'>修改</a><a href=\"javascript:void(0)\" class='delete-input' onclick='SysOrganizationDelete(" + Id + ",this)'>删除</a><span></span>	</div></div></div>";
+                        $("button.col-btm-10").parent().parent().parent('.container-fluid').find(".public-element").last().after(str);
+                        $("button.col-btm-10").parent().parent().parent('.container-fluid').find(".public-element").last().click();
+                    }
+                }
+            });
+        }
+
+    }
+
+
+    //修改部门
+    function SysOrganizationUpdate(ID, obj) {
+        if ($(obj).html() == "修改") {
+            var id = $(obj).parent().parent().attr("ids");
+            var vaule = $(obj).parent().prev(".Name-input").val();
+            $(obj).parent().prev(".Name-input").removeAttr("readOnly", "true");
+            $(obj).parent().prev(".Name-input").css("background-color", "#f6f8f9");
+            $(obj).parent().prev(".Name-input").css("border", "1px solid #e0e1e1");
+            $(obj).replaceWith("<a href='javascript:void(0)'class='modify-input' onclick='SysOrganizationUpdate(" + id + ",this)'>保存</a>");
+            $("#produce").removeAttr("readOnly", "true");
+        } else {
+            Update(ID, obj);
+            $(obj).html("修改");
+            $(obj).parent().prev(".Name-input").attr("readOnly", "true");
+            $(obj).parent().prev(".Name-input").css("background-color", "#fff");
+            $(obj).parent().prev(".Name-input").css("border", "none");
+            $("#produce").attr("readOnly", "true");
+        }
+
+    }
+</script>

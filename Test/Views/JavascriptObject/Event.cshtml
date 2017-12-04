@@ -1,0 +1,109 @@
+﻿@{
+    ViewBag.Title = "Event";
+}
+<input type="button" id="btn" />
+<input type="button" id="btn1" />
+<script src="~/Content/js/Event.js"></script>
+@*事件*@
+<script type="text/javascript">
+    /*onclick不可累加*/
+    var btn = document.getElementById("btn");
+    var count = 0;
+    btn.onclick = function () {
+        count++;
+        if (count == 3) {
+            btn.onclick = null;//删除点击事件
+        }
+    }
+
+    var btn1 = document.getElementById("btn1");
+    btn1.onclick = function (e) {
+        var e = e || window.event;//兼容IE
+    }
+
+    //冒泡:从里向外 捕获：从外向内
+    //取消冒泡(DOM2级事件绑定方法才能实现)
+    btn1.onclick = function (e) {
+        var e = e || window.event;//兼容IE
+        //w3c取消冒泡
+        e.stopPropagation();
+        //IE取消冒泡,IE不支持捕获
+        e.cancelBubble = true;
+
+        //兼容性
+        if (e.cancelBubble == "undefined") {
+            e.stopPropagation();
+        } else {
+            e.cancelBubble = true;
+        }
+    }
+
+    /*addEventListener可以累积事件*/
+    btn1.addEventListener('click', function (e) {
+
+    }, false);//事件名  函数  true:捕获 false:冒泡
+
+    //removeEventListener:移除事件
+
+    var count = 0;
+    function handler() {
+        count++;
+        if (count == 3) {
+            btn.removeEventListener('click',handler,false);
+        }
+    }
+    btn1.addEventListener('click', handler, false);
+
+    //这样是移除不了的，没有效果
+    btn1.addEventListener('click', function handler() {
+        count++;
+        if (count == 3) {
+            btn.removeEventListener('click', handler, false);
+        }
+    }, false);
+
+
+    //IE8 之前版本填写事件的写法
+    btn1.attachEvent('onclick', function () {
+    });
+    btn1.detachEvent('onclick', function () { });
+    //兼容浏览器，封装脚本 Event.js
+    //调用脚本
+    Event.addHandler(btn1, 'click', test);
+    function test() {
+        alert(2);    }
+</script>
+
+<script type="text/javascript">
+    var btn = document.getElementById("btn");
+    btn.addEventListener('click', function (e) {
+        alert(this === e.currentTarget);//true
+        alert(this === e.target);//true
+        //取消默认事件(没有点击事件等)
+        alert(e.cancelable);//true
+        e.preventDefault();//当e.cancelable为true时，e.preventDefault()可取消默认行为
+
+    }, false);
+
+    //检测处于事件流的哪一级
+    btn.click = function () {
+        e.eventPhase();//在捕获阶段，此值为1.自身触发为2，冒泡阶段此值为3
+    }
+
+    //IE浏览器
+    btn.onclick = function () {
+        alert(window.event.srcElement === this);
+        //IE取消默认事件
+        window.event.returnValue = false;//取消默认行为
+    }
+    
+
+</script>
+
+@*onload*@
+<script type="text/javascript">
+    window.onload('body', function () {
+    })
+
+    //直接应用在标签上<img onload='alert(1)'>
+</script>

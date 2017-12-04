@@ -1,0 +1,15 @@
+2017-10-20 12:33:49,011 INFO  TestServer-20031746 - The server instance TestServer-20031746 has been started!
+2017-10-20 12:33:49,023 ERROR Test.MvcApplication - 打开状态：True
+2017-10-20 12:33:49,783 ERROR TestServer-20031746 - This server instance is in the state Running, you cannot start it now.
+2017-10-20 13:56:24,604 INFO  TestServer-11144211 - The server instance TestServer-11144211 has been started!
+2017-10-20 13:56:24,618 ERROR Test.MvcApplication - 打开状态：True
+2017-10-20 13:56:25,247 ERROR TestServer-11144211 - This server instance is in the state Running, you cannot start it now.
+2017-10-20 14:01:04,094 INFO  TestServer-33189039 - The server instance TestServer-33189039 has been started!
+2017-10-20 14:01:04,103 ERROR Test.MvcApplication - 打开状态：True
+2017-10-20 14:01:04,346 ERROR TestServer-33189039 - This server instance is in the state Running, you cannot start it now.
+2017-10-20 16:54:50,661 INFO  TestServer-32057793 - The server instance TestServer-32057793 has been started!
+2017-10-20 16:54:50,689 ERROR Test.MvcApplication - 打开状态：True
+2017-10-20 16:54:50,690 ERROR TestServer-32057793 - This server instance is in the state Running, you cannot start it now.
+2017-10-20 17:12:25,439 INFO  TestServer-11144211 - The server instance TestServer-11144211 has been started!
+2017-10-20 17:12:25,449 ERROR Test.MvcApplication - 打开状态：True
+2017-10-20 17:12:25,450 ERROR TestServer-11144211 - This server instance is in the state Running, you cannot start it now.

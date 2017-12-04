@@ -1,0 +1,24 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+<script type="text/javascript">
+    //textarea里面的回车换行显示成/n
+    var test = document.getElementById("content").value;
+    test = test.replace(/\r\n/g, '\n'); //IE9、FF、chrome
+    test = test.replace(/\n/g, '\n'); //IE7-8
+
+    //将数据库中的\n显示在textarea中，显示成回车
+    var content = content.replace(/\n/g, "\r\n");
+    var con = document.getElementById("content");
+    con.innerHTML = content;
+  
+</script>
+
+  @*textarea placeholder换行显示，不兼容火狐*@
+<style type="text/css">
+    #content::-webkit-input-placeholder::after {
+        display: block;
+        content: "2、\A 3、";
+    }
+</style>

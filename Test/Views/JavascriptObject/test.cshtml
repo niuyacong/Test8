@@ -1,0 +1,56 @@
+﻿@{
+    ViewBag.Title = "test";
+}
+
+<h2>test</h2>
+<script type="text/javascript">
+    var zero = function (f)
+    {
+        return function (x)
+        {
+            return x;
+        }
+    };
+    //(zero()());
+    var one = function (f)
+    {
+        return function (x)
+        {
+            return f(x);
+        }
+    };
+
+    // one(alert(1)); 
+    //one(function () { alert(1); })(alert(2))
+    // one(function () { alert(1); })(one(function () { alert(1); })())
+    function add(n, m)
+    {
+        return function (f)
+        {
+            return function (x)
+            {
+                return m(f)(n(f)(x));
+            }
+        }
+    }
+    //add(one, one)(f)(x);  one(f)(one(f)(x))()  
+
+    //add(one, one)(f(x));
+    //add(one, one)(function ()
+    //{
+    //    alert(1);
+    //})();
+
+
+  //  var b = add(one, one);
+  //  var c = add(b,one);
+  //(b(function ()
+  //{
+  //    alert(1);
+  //}))();
+    (function (x)
+    {
+        alert(x);
+    })();
+
+</script>

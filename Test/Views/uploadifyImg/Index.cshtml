@@ -1,0 +1,56 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+<table class="adm_8" border="0" cellpadding="0" cellspacing="0" width="98%">
+    <tr>
+        <td class="adm_45" align="right" height="30" width="10%">
+            图片：
+        </td>
+        <td class="adm_42" width="40%" height="30px" colspan="6">
+            <input type="file" style="height: 27px;" id="imgFile1" name="imgFile[]" />
+            <input type="hidden" value="@list.Type" name="Type" id="types" />
+        </td>
+    </tr>
+    <tr>
+        <td class="adm_45" align="right" height="30" width="22%">
+            展示图片：
+        </td>
+        <td class="adm_42" width="78%" height="50px" colspan="6" id="mainPictures">
+            <img src="@list.Picture" id="mainPicimg" style="width: 150px; height: 110px;" />
+            <input type="hidden" name="Picture" id="mainPic" value="@list.Picture" />
+        </td>
+    </tr>
+</table>
+<script src="~/Content/uploadify/jquery.uploadify1.js"></script>
+<script type="text/javascript">
+    //上传
+    function upImg(fileid, txtImgId, inputUrl) {
+        $("#" + fileid + "").uploadify({
+            queueID: "1",
+            swf: '/Content/uploadify/uploadify.swf',
+            uploader: '/Upload/uploadSLImage', // 上传文件，后台上传方法
+            buttonImage: "../Content/images/uploadimg.gif", // 按钮图片地址
+            fileSizeLimit: '1024KB', // 最大允许文件上传大小，这里是 1M
+            fileTypeDesc: 'Image Files',
+            fileTypeExts: '*.gif; *.jpg; *.png; *.jpeg',
+            auto: true, // 自动上传
+            uploadLimit: 20, // 允许文件上传个数
+            queueSizeLimit: 4, // 允许同时文件上传个数
+            width: 84, // 上传按钮的宽度
+            height: 24, // 上传按钮的高度
+            onUploadSuccess: function (file, data, response) { // 上传文件成功之后的事件
+                var value = JSON.parse(data);
+                var aa = '<img  src="' + JSON.parse(data).value.imgpngname + '" style="width: 150px; height: 110px;" />';
+                $("#" + txtImgId + "").append(aa);
+                $('#' + inputUrl + '').val($('#' + inputUrl + '').val() + JSON.parse(data).value.imgpngname + ',');
+
+            },
+            onUploadError: function (file, data, response) {
+                var value = JSON.parse(data);
+                $("#" + imgId + "").attr("src", value.data.url);
+                $("#" + imgId + "").css("display", "initial");
+                $("#" + txtImgUrl + "").val(value.data.url);
+            }
+        });
+    }
+</script>

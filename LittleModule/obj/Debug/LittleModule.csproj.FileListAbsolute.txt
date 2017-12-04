@@ -1,0 +1,5 @@
+F:\牛亚聪\Test8-master\LittleModule\bin\Debug\LittleModule.dll
+F:\牛亚聪\Test8-master\LittleModule\bin\Debug\LittleModule.pdb
+F:\牛亚聪\Test8-master\LittleModule\obj\Debug\LittleModule.csprojResolveAssemblyReference.cache
+F:\牛亚聪\Test8-master\LittleModule\obj\Debug\LittleModule.dll
+F:\牛亚聪\Test8-master\LittleModule\obj\Debug\LittleModule.pdb

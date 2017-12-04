@@ -1,0 +1,414 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+<script type="text/javascript">
+    $(function () {
+        //定义对象的方法
+        //方法一：
+        var obj = new Object();
+        var arr = new Array();//空数组[]
+        var date = new Date();//日期时间对象
+        var reg = new RegExp("js");//创建正则对象
+
+        //通过构造函数的形式创建对象
+        function Test() {
+
+        }
+        var obj2 = new Test();
+
+        //通过instanceof 检测对象是否是构造函数
+        var b = obj2 instanceof Test;//true
+
+        //create 创建对象 ,对象都继承于Object
+        var obj = Object.create({ x: 1 });
+        var obj2 = Object.create(null);//无原型的对象
+        var obj3 = Object.create(Object.prototype);//一个空对象
+        //方法二：
+        var obg1 = new {};
+
+        //定义对象的属性
+        obj.name = "测试";//obj["name"]="测试";
+        obj.str = "string";
+        obj.showname = function () {
+            alert("ceshi");
+        }
+        obj1.obj = obj;
+
+        //属性的访问
+        //方法一：
+        alert(obj.name);
+        alert(obj.str);
+        obj.showname();
+        alert(obg1.obj.name);
+        //方法二：
+        alert(obj["name"]);
+        alert(obj["str"]);
+        obj["showname"]();
+        alert(obj1["obj"]["name"]);
+
+        var key = 'name';
+        alert(obj.key);//undefined
+        alert(obj[key]);//测试
+
+        //对象直接量定义方法，使用{}
+        var obj2 = {
+            num: 1,
+            str: "string",
+            showname: function () {
+                alert("ceshi");
+            }
+        }
+
+        //删除属性 delete 
+        delete obj2.num;
+
+        //遍历属性：有继承的属性
+        for (var p in obj2) {
+
+        }
+        //返回所有自有属性的名称
+        Object.getOwnPropertyNames(obj2);//一个对象的所有属性，包括不可枚举的
+        Object.keys(obj2);//一个对象的所有属性，可枚举的
+        //通过in看属性是否在对象上
+        var o = 'num' in obj2;//true 属性在对象或者原型上，或者是Object都会返回true
+
+        //检测对象上是否有属性hasOwnProperty
+        obj2.hasOwnProperty('name');//true  对象原型和Object上有的属性,原型链上的会返回false
+
+
+    });
+
+    //对象属性：可写、可枚举、可配置、get\set(默认是true，通过Object.defineProperty创建的属性，这些默认是false)
+    //对象的属性可以继承
+    var newObject = {
+        _proto:null //没有继承而来的属性
+    }
+
+    //属性是对象自己的，并且是可枚举的
+    var obj = {}
+    obj.propertyIsEnumerable('x');
+    alert(obj.k !== undefined);//(对象或继承下来的)存在属性k,返回false,否则返回true
+
+
+    Object.defineProperty(obj, 'x', {
+        value: 12,
+        writable: false,//是否可写可修改
+        enumerable: true,//是否可枚举
+        configurable: true//是否可配置
+    })
+    //当 configurable: true时
+    //可修改
+    Object.defineProperty(obj, 'x', {
+        value: 12,
+        writable: true
+    })
+    //当属性不可配置时configurable: false，writable可由true变为false,但是不能将false变成true
+    var person = {
+        username: 'king',
+        get age() {
+            return 1;
+        },
+        set age(val){
+            this.username = "ces";
+    }
+    }
+    person.age;//没有这个属性  会去找get age()方法
+    Object.defineProperty(person, 'x', {
+        get: function () {
+            return 1;
+        }
+    })
+    person.x;//1
+
+
+    /*设置多个属性*/
+    var test = {};
+    Object.defineProperties(test, {
+        'username': {
+            value: 1,
+            configurable: false
+        },
+        'age': {
+            value: 12,
+            writable: true
+        }
+    });
+    alert(Object.getOwnPropertyDescriptor(test,'username'));//属性的配置描述
+
+
+
+
+
+
+    function Testjson() {
+        //服务器端传回的text文本转化为javascript的json格式
+        //服务器端返回是数组[]，可以直接用eval转换
+        var str="[1,2{a:123,b:'string'}]"
+        eval(str);
+        //服务器端返回的是对象{},需要加"("
+        var str = "{'a':'hello',b:[1,2,3],c:function(){alert(1)}}";
+        eval("(" + str + ")");
+    }
+
+    //javascript中类的定义，首字母大写
+    //使用new创建一个对象时,function里面的代码会被执行
+    //this代表当前对象
+    var Book = function (name) {
+        //定义共有的属性
+        this.name = name;
+        //定义共有的方法
+        this.getName = function () {
+            return this.name;
+        }
+        this.setName = function (nname) {
+            this.name = nname;
+        }
+    }
+    //优化：每次实例化一个对象（new）,新对象会同时具有name属性，get set name方法
+    //造成资源浪费
+    //所以，可以在原型上定义共有属性，在原型对象上定义共有方法（在原型对象上定义的，会在每个实例化对象上具有，一个对象新增，其他实例化对象也会新增）
+    var BOOknew = function (name) {
+        this.name = name;
+    }
+    BOOknew.prototype.setName = function (nname) {
+        this.name = nname;
+    }
+    BOOknew.prototype.getName = function () {
+        return this.name;
+    }
+    //优化：每个实例化对象都执行原型对象的方法
+    var BOOK = function (name) {
+        this.name = name;
+        if (typeof BOOK._init == "undefined") {
+            //共有方法在原型对象上定义
+            BOOK.prototype.setName = function (nname) {
+                this.name = nname;
+            }
+            BOOK.prototype.getName = function () {
+                return this.name;
+            }
+        }
+        BOOK._init = true;
+    }
+    //测试
+    function Booktest() {
+        var book1 = new Book("book1");
+        //function上面都有一个原形对象(加上的属性和方法，原对象也具有了)
+        var proto = Book.prototype;
+        proto.str = "string";
+        proto.hello = function () {
+            alert("hello");
+        }
+        //也可以写成
+        Book.prototype.test = "test";
+    }
+</script>
+
+<script type="text/javascript">
+    //私有函数：防止命名冲突，保留私有函数，使其不被其他程序调用
+    function test(name) {
+        function test1(name1) {
+            return name11 + "测试";
+        }
+        return test1(name);
+    }
+    //返回函数的函数
+    function a() {
+        alert("a");
+        return function () {
+            alert("b");
+        }
+    }
+    a();//弹出a
+    a()();//先弹a 再弹b
+    var func = a();
+    func();//同上
+
+    //example
+    var a = function () {
+        function setup() {
+            var setup = 'string';
+        }
+        function dowhat() {
+            alert("哈哈");
+        }
+    }();//()先自调用一遍
+    a();//弹出哈哈
+</script>
+
+@*对象原型*@
+<script type="text/javascript">
+    //检测一个对象是否是另一个对象的原型（或处于原型链中）
+    var obj = { x: 1 };
+    var obj1 = Object.create(obj);
+    var flag = obj.isPrototypeOf(obj1);//true
+    flag = Object.prototype.isPrototypeOf(obj1);//true
+
+    //返回一个对象的原型
+    Object.getPrototypeOf(obj1);
+
+    //对象的类是一个标识对象类型的字符串
+    var test = {};
+    var print = test.toString();//Object
+    var str = [];
+    print = Object.prototype.toString.call(str);//Array 内置对象 tostring被重写
+
+
+
+</script>
+
+@*时间对象Date*@
+<script type="text/javascript">
+    //方法一
+    var d = new Date();//当前时间
+    //方法二
+    d = new Date(520);//1970-1-1 加上这个毫秒数
+    //方法三：
+    d = new Date(2015, 5, 2);
+    
+
+    /*方法*/
+    //1、
+    Date.parse("2017-02-02");//返回到1970-01-01的毫秒数
+    Date.UTC(2015, 5, 5, 12, 12, 12, 12);
+    var date = new Date("2015-09-6 12:22");
+    date.getDate();//得到天数 1到31之间的天
+    date.getDay();//得到星期几
+    date.getYear();//得到年
+    date.getMonth();//得到月
+    date.getHours();
+    date.getMinutes();
+    date.getSeconds();
+    date.getTime();//返回到1970-01-01的毫秒数
+    date.setDate('2');//设置天
+    date.setFullYear('2034');
+    date.setMonth('3');//这是四月
+
+    date.setSeconds('2');
+    date.valueOf();//返回到1970-01-01的毫秒数
+    date.toJSON();//转换成json格式
+</script>
+
+@*正则对象*@
+<script type="text/javascript">
+    var reg = new RegExp("javascript");
+    var flag = reg.test("this is javascript course");//true
+    reg = /javascript/;
+    flag = reg.test("this is javascript course");//true
+    reg = /Javascript/;
+    flag = reg.test("this is javascript course");//false
+    reg = /javascript/i;//i：忽略大小写
+    flag = reg.test("this is javascript course");//true
+
+    reg = /[abc]/.test('blue');//包含abc任意字符则返回true
+    reg = /[abc]/.test('lue');//false
+    reg = /[^abc]/.test('sss');//true ^:不包含abc任意字符则返回true
+    reg = /[0-9]/.test("this is a test");//false 是否包含0-9任意字符
+    reg = /[a-z]/.test('22');//false 是否包含a到z任意字符
+
+    reg = /php|java|c/.test("c");//true 包含三者中任意一个就返回true 区分大小写 i:不区分大小写
+
+    //元字符
+    reg = /./.test("\n");//false .:任意字符，除了换行符
+    reg = /./.test("this is a test");//true
+
+    reg = /\w/.test("lala");//true \w:等价于[a-z0-9A-Z]  小写w
+    reg = /\W/.test("!!");//true \W:等价于[^a-z0-9A-Z]   大写W
+
+    reg = /\s/.test("this is a test");//true 小写s :是否包含空白字符，包含则返回true
+    reg = /\S/.test("   ");//false  大写S：不包含空白字符返回true
+
+    reg = /\bg/.test("good");//true 小b:是否以g开头，是返回true
+    reg = /d\b/.test("good");//true 小b:是否以d结尾，是返回true
+    reg = /o\B/.test("good");//true 大B：不以o为边界，返回true
+
+    reg = /\d/.test("3");//true 小d:是否是[0-9] 是返回true
+    reg = /\D/.test("fda");//true 大D：不是数字0-9
+
+
+    //量词
+    reg = /o+/.test("google");//匹配至少一个o的字符串
+    //n* :匹配包含0个或多个n的字符串
+    //n? :匹配包含一个或零个n的字符串
+    //n{x}:匹配包含x个n的序列的字符串
+    //n{x,y}:匹配包含x个或y个n的字符串
+    //n{x,}:匹配至少包含x个n的序列的字符串
+    //n$ :匹配任何以n结尾的字符串
+    //^n :匹配任何以n开头的字符串
+    //x(?=n):匹配任何x后面是n的字符串
+    //x(?!n):匹配任何x后面不是n的字符串
+
+    //方法
+    reg = /is/i.exec('this is  a test');//返回第一个匹配的相关信息，索引等，即时使用g(全局查找)，也只返回一个匹配项，再次调用时，返回下一个匹配项
+    reg[0];//返回的是匹配的项的字符串
+
+    var str = 'this is a test';
+    var patt = /is/ig;//使用while循环查找所有匹配时，需要在while外面定义匹配字符
+    var myArr;
+    while ((myArr = patt.exec(str) != null)) {
+        var msg = "找到了" + myArr[0] +
+            "下个匹配从" + patt.lastIndex + "开始";
+    }
+
+    //有string对象的方法
+    var str = "this is a test";
+    reg = str.match(/is/i);//返回的是匹配的对象
+
+    reg = str.match("is/ig");//返回的是匹配字符串 //is
+
+    reg = str.search("is/i");//返回的是索引值
+
+    reg = str.replace("is/i", "la");//找到匹配项并替换  加上g:全部替换
+
+    //例子：
+    var str = "2015-07-01";
+    reg = str.replace(/(\d{4})-(\d{2})-(\d{2})/, '$2$3$1');//$2:第二部分 ，格式变为月日年
+
+    str = "Hello World";//替换大写字母
+    reg = str.replace(/[A-Z]/g, func);
+    function func(obja) {
+        return 'king_' + obja.toLowerCase();
+    }
+
+    reg=str.split(/\o+/);
+
+</script>
+
+@*Error对象*@
+<script type="text/javascript">
+    try{
+
+    }catch(e){
+    }
+    finally{
+        //总是会执行
+    }
+</script>
+
+@*对象*@
+<script type="text/javascript">
+    /*对象传递*/
+    //对象传递是通过引用进行传递的
+    //在引用上做的改动会影响原对象
+    /*对象比较*/
+    //当对两个对象做比较的时候，只有当两个引用指向同一个对象时，为true,否则都是false
+
+    var o1={x:1};
+    var o2={x:2};
+    alert(o1==o2);//false 属性一样，也不是同一个对象
+
+    //两个对象指向同一个引用
+    var o3={x:1};
+    var o4=o3;
+    o4.x=5;
+    alert(o4.x);//5
+    alert(o3.x);//5
+
+    alert(o3==o4);//true
+    function f(o){
+        o.x=88;
+    }
+    f(o3);
+    alert(o4.x);//88
+</script>

@@ -1,0 +1,281 @@
+﻿@{
+    ViewBag.Title = "NumAndBool";
+}
+
+<h2>NumAndBool</h2>
+
+@*Number*@
+<script type="text/javascript">
+    //此时Number作为函数使用，将字符串123.123转换为数值型123.123
+    var n = Number("123.123");
+    console.log(typeof n);//number
+
+    var n = new Number('123.123');
+    console.log(typeof n);//object
+
+    alert(Number.MAX_VALUE);//最大正数
+    alert(Number.MIN_VALUE);//最小正数
+    alert(Number.NaN);//NaN
+    alert(Number.NEGATIVE_INFINITY);//负无穷大 -Infinity
+    alert(Number.POSITIVE_INFINITY);//正无穷大Infinity
+
+
+    //检测是否是NaN
+    alert(Number.isNaN(NaN));//true
+
+    //Number方法
+    //toFixed
+    var n = 123456.789;
+    alert(n.toFixed);//123457
+    n.toFixed(2);//四舍五入
+
+    //toExponential
+    var n = 77.1234;
+    console.log(n.toExponential());//以指数的形式返回数字
+    console.log(n.toExponential(3));//保留小数点后几位
+
+    //toPrecision
+    console.log(n.toPrecision());
+    console.log(n.toPrecision(3));//77.1 一共返回几位数字
+    console.log((1234.567).toPrecision(2));//会以指数的形式返回
+
+    //toString
+    var n = new Number(255);
+    console.log(n.toString());//255
+    console.log(n.toString(10));//十进制  默认也是十进制 255
+</script>
+
+@*Boolean*@
+<script type="text/javascript">
+    var b = new Boolean();
+    console.log(typeof b);//object
+    console.log(b.valueOf());//false
+    console.log(typeof b.valueOf());//boolean
+
+
+    //一下情况均返回false,其他情况返回true
+    var b = new Boolean(0);//false
+    b = new Boolean(-0);//false
+    b = new Boolean(null);//false
+    b = new Boolean(false);//false
+    b = new Boolean(undefined);//false
+    b = new Boolean('');//false
+
+
+    var b = Boolean('test');//true
+
+    //总结：一般不要使用boolean对象，直接使用方法就好
+</script>
+
+@*string对象*@
+<script type="text/javascript">
+    var str = 'king';
+    console.log(typeof str);//string
+    var strobj = new String('king');
+    console.log(typeof strobj);//object
+    console.log(strobj[0]);//k
+    console.log(strobj.length);//4
+    console.log(strobj.valueOf());//king
+    console.log(strobj.toString());//king
+
+    console.log("niu"[0]);//n
+    console.log("niu".length);//n
+
+    var str = String('123');
+    console.log(str);//123
+
+    //string方法
+    var str = 'king';
+    console.log(str.charAt(0));//k 取第几个字符 没有的话返回空字符
+    var str = 'aking';
+    console.log(str.charCodeAt(0));//返回字符的ascii码值，根据下标   97,没有返回NaM
+
+    //根据ascii码值返回对应的字符
+    console.log(String.fromCharCode(97));//a
+    console.log(String.fromCharCode(65, 66, 67));//ABC
+
+    //连接字符串  相当于+
+    var str = 'hello';
+    console.log(str.concat(' world'));//hello world
+    console.log(str.concat(' world', '!'));//hello world!
+
+    //搜索字符串位置(首次出现的位置)
+    var str = 'this is a test';
+    console.log(str.indexOf('t'));//0
+    console.log(str.indexOf('is'));//2
+    console.log(str.indexOf('Is'));//-1 区分大小写，没有返回-1
+    console.log(str.indexOf('is', 3));//5  从指定位置开始查找
+
+    //统计一个字符在指定字符串中出现的次数
+    var str = 'sdgfdghgfs';
+    var count = 0;
+    var pos = str.indexOf('s');
+    while (pos != -1) {
+        count++;
+        pos = str.indexOf('s', pos + 1);
+    }
+
+    //最后一次出现的位置
+    var str = 'this is a test';
+    console.log(str.indexOf('is'));//2
+    console.log(str.lastIndexOf('is'));//5
+
+    //本地特殊规则比较两个字符串，区分大小写
+    console.log('a'.localeCompare('z'));//-1
+    console.log('z'.localeCompare('a'));//1
+    console.log('a'.localeCompare('A'));//-1
+    console.log('a'.localeCompare('a'));//0
+
+
+    //match:找到一个或多个正则表达式的结果,多个返回的是数组
+    var str = 'this  is  a test of king show time';
+    var re = /IS/;
+    Console.log(str.match(re));
+    var str = 'WEFFFFFFFFFSDFSFGAdsfgrvgsfg';
+    console.log(str.match(/[a-f]/ig));
+
+
+    //search 根据正则表达式进行搜索
+    var str = 'this is a test';
+    console.log(str.search(/is/));//2  返回首次出现的位置
+
+    //replace 根据正则替换
+    var str = 'this is a test';
+    str.replace(/Is/i, '!');//th! is a test
+    str.replace(/Is/ig, '!');//th! ! a test
+    var str = "2015-09-26";
+    str.replace(/(\d{4})-(\d{2})-(\d{2})/, "$2/$3/$1");//09/26/2015
+    str.replace(/(\d{4})-(\d{2})-(\d{2})/, func);
+    function func(match,d1,d2,d3) {
+        return [d2, d3, d1].join('/');
+    }
+
+    //截取字符串
+    var str = 'abcedf';
+    console.log(str.slice(2));//cedf
+    console.log(str.slice(0, 2));//ab
+    console.log(str.slice(-3));//edf
+    console.log(str.slice(-4, -2));//ce
+    console.log(str.slice(0, -1));//abcde
+
+    console.log(str.substr(3));//abc
+    console.log(str.substr(0, 3));//abc
+
+    //还有截取字符串 substring
+
+    //将字符串拆分成数组
+    var str = '2015-08-18';
+    var arr = str.split('-');
+    var str = 'a b c d e';
+    var arr = str.split(' ');
+    arr = str.split(' ', 2);//取前两部分
+
+    //字符串大小写相关的
+    console.log('KING'.toLowerCase());//king
+    console.log('KING'.toLocaleLowerCase());//king
+    console.log('maizi'.toUpperCase());//MAIZI
+    console.log('maizi'.toLocaleUpperCase());//MAIZI
+
+    //trim()去除前后空格
+    var str = ' abc ';
+    console.log(str.trim());//abc
+
+    //产生锚点
+    var str = "this is a test";
+    document.body.innerHTML = str.anchor('contents_anchor');
+
+    //产生连接
+    var title = "this is of king show time";
+    var url = 'http://phpfamily.org';
+    document.write('click me to visit my blog' + title.link(url));
+</script>
+
+@*function对象*@
+<script type="text/javascript">
+    function Test() { };
+    //返回函数的构造函数
+    console.log(Test.constructor);
+
+    function test1(x, y, z) {
+        return x + y + z;
+    }
+    //得到参数个数
+    console.log(test1.length);//3
+
+    //返回调用函数的函数
+    function a() {
+        return a.caller;
+    }
+    function b() {
+        return a();
+    }
+    b();//返回b函数
+
+    //argument
+    function test2() {
+        return arguments;
+    }
+    console.log(test2(1, 3, 4, 5, 4));//返回参数的数组形式
+    //callee属性,这个属性引用的是当前被调用的函数对象
+    function f() {
+        return arguments.callee;
+    }
+    f();//返回自身函数的引用
+    //递归可以使用
+
+    (function (count) {
+        if (count <= 3) {
+            alert(count);
+            arguments.callee(++count);
+        }
+    })(0);//0,1,2,3
+
+    //返回函数源代码
+    function f1(a,b,c) {
+        return a + b + c;
+    }
+    console.log(f1.toString());// function f1(a,b,c) {return a + b + c;}
+    //valueOf 返回函数本身
+    console.log(f1.valueOf());//function f1(a,b,c)
+
+    //call  apply
+    var obj = {
+        name: 'king',
+        say: function (somebody) {
+            return 'hello ' + somebody + ' this is ' + this.name;
+        }
+    }
+    console.log(obj.say('queen'));//hello queen this is king
+
+    var obj1 = {
+        name: 'maizi',
+    };
+    console.log(obj.say.call(obj1, 'js'));//hello js this is maizi
+
+    //apply
+    var obj2 = {
+        calc: function (x, y, z) {
+            return x + y + z;
+        }
+    };
+    console.log(obj2.calc.call(null, 1, 2, 3));
+    console.log(obj2.calc.apply({}, [3, 4, 5]));
+</script>
+
+@*Math是内置对象，所有属性和方法都是静态的*@
+<script type="text/javascript">
+    //属性
+    console.log(Math.E);
+    console.log(Math.PI);
+    console.log(Math.abs(-12));//12
+    console.log(Math.ceil(12.3));//13
+    console.log(Math.floor(14.8));//14
+    console.log(Math.pow(2, 3));
+    console.log(Math.sqrt(4));//开方
+    console.log(Math.random());//随机数
+    console.log(Math.max(12, 23, 43, 22));//取最大值
+    console.log(Math.min(2, 33, 2, 1, 33, 22));//取最小值
+</script>
+
+
+

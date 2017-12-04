@@ -1,0 +1,8 @@
+2017-10-18 16:39:49,733 ERROR Test.MvcApplication - True
+2017-10-18 16:39:49,735 ERROR TestServer-20031746 - This server instance is in the state Running, you cannot start it now.
+2017-10-18 16:41:54,076 ERROR Test.MvcApplication - 打开状态：True
+2017-10-18 16:41:54,281 ERROR TestServer-11144211 - This server instance is in the state Running, you cannot start it now.
+2017-10-18 16:49:43,067 ERROR Test.MvcApplication - 打开状态：True
+2017-10-18 16:49:43,067 ERROR TestServer-11144211 - This server instance is in the state Running, you cannot start it now.
+2017-10-18 17:29:35,731 ERROR Test.MvcApplication - 打开状态：True
+2017-10-18 17:29:35,732 ERROR TestServer-11144211 - This server instance is in the state Running, you cannot start it now.

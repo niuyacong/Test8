@@ -1,0 +1,635 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{2B0E35CF-8F9C-46FD-99EE-69FBA6E1A00F}</ProjectGuid>
+    <ProjectTypeGuids>{E3E379DF-F4C6-4180-9B81-6769533ABE47};{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Test</RootNamespace>
+    <AssemblyName>Test</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Gma.QrCodeNet.Encoding.Net45">
+      <HintPath>..\dll\Gma.QrCodeNet.Encoding.Net45.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net, Version=1.2.13.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net.2.0.3\lib\net40-full\log4net.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.6.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="NPOI">
+      <HintPath>..\dll\NPOI.dll</HintPath>
+    </Reference>
+    <Reference Include="Quartz">
+      <HintPath>..\dll\Quartz.dll</HintPath>
+    </Reference>
+    <Reference Include="Senparc.Weixin">
+      <HintPath>..\dll\Senparc.Weixin.dll</HintPath>
+    </Reference>
+    <Reference Include="Senparc.Weixin.MP">
+      <HintPath>..\dll\Senparc.Weixin.MP.dll</HintPath>
+    </Reference>
+    <Reference Include="Senparc.Weixin.Open">
+      <HintPath>..\dll\Senparc.Weixin.Open.dll</HintPath>
+    </Reference>
+    <Reference Include="Sider">
+      <HintPath>..\packages\Sider.0.10.2.22156\lib\net40-client\Sider.dll</HintPath>
+    </Reference>
+    <Reference Include="SuperSocket.Common, Version=1.5.3.0, Culture=neutral, PublicKeyToken=6c80000676988ebb, processorArchitecture=MSIL">
+      <HintPath>..\packages\SuperWebSocketNETServer.0.8\lib\net45\SuperSocket.Common.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="SuperSocket.Facility, Version=1.5.3.0, Culture=neutral, PublicKeyToken=6c80000676988ebb, processorArchitecture=MSIL">
+      <HintPath>..\packages\SuperWebSocketNETServer.0.8\lib\net45\SuperSocket.Facility.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="SuperSocket.SocketBase, Version=1.5.3.0, Culture=neutral, PublicKeyToken=6c80000676988ebb, processorArchitecture=MSIL">
+      <HintPath>..\packages\SuperWebSocketNETServer.0.8\lib\net45\SuperSocket.SocketBase.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="SuperSocket.SocketEngine, Version=1.5.3.0, Culture=neutral, PublicKeyToken=6c80000676988ebb, processorArchitecture=MSIL">
+      <HintPath>..\packages\SuperWebSocketNETServer.0.8\lib\net45\SuperSocket.SocketEngine.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="SuperWebSocket, Version=0.8.0.0, Culture=neutral, PublicKeyToken=7ba53b9a7cef5d1c, processorArchitecture=MSIL">
+      <HintPath>..\packages\SuperWebSocketNETServer.0.8\lib\net45\SuperWebSocket.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Messaging" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Mvc.FixedDisplayModes, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.FixedDisplayModes.1.0.0\lib\net40\Microsoft.Web.Mvc.FixedDisplayModes.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.Formatting, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.4.0.30506.0\lib\net40\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Web.Helpers, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.30506.0\lib\net40\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.4.0.30506.0\lib\net40\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.4.0.30506.0\lib\net40\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.4.0.30506.0\lib\net40\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.2.0.30506.0\lib\net40\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.30506.0\lib\net40\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.30506.0\lib\net40\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.30506.0\lib\net40\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="zxing">
+      <HintPath>..\dll\zxing.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Areas\Convert\DataTabletoJsonController.cs" />
+    <Compile Include="Areas\Convert\JsonToDictionaryormodelController.cs" />
+    <Compile Include="Areas\Convert\ListToJsonController.cs" />
+    <Compile Include="Areas\cookie\cookieController.cs" />
+    <Compile Include="Areas\enums\ColorEnum.cs" />
+    <Compile Include="Areas\enums\enumController.cs" />
+    <Compile Include="Areas\littlewx\HttpsPostController.cs" />
+    <Compile Include="Areas\littlewx\littleController.cs" />
+    <Compile Include="Areas\MessageQueue\MessageQueueController.cs" />
+    <Compile Include="Areas\readtextBYtab\readandwriteController.cs" />
+    <Compile Include="Areas\Redis\redisTestController.cs" />
+    <Compile Include="Areas\Scheduler\SchedulerController.cs" />
+    <Compile Include="Areas\Scheduler\Tasks.cs" />
+    <Compile Include="Areas\study\Controllers\echartsController.cs" />
+    <Compile Include="Areas\study\Controllers\ZtreeandhighchartsController.cs" />
+    <Compile Include="Areas\study\studyAreaRegistration.cs" />
+    <Compile Include="Areas\Vue\VueController.cs" />
+    <Compile Include="Areas\webnet.cs" />
+    <Compile Include="Areas\wxshare\shareController.cs" />
+    <Compile Include="Areas\导出\ExcelImportController.cs" />
+    <Compile Include="Areas\根据地址生成二维码\ByPrintController.cs" />
+    <Compile Include="Areas\根据地址生成二维码\ByPrintMulController.cs" />
+    <Compile Include="Areas\根据地址生成二维码\ByurlController.cs" />
+    <Compile Include="Areas\根据地址生成二维码\CombinImageController.cs" />
+    <Compile Include="Areas\根据地址生成二维码\QrCodeNetController.cs" />
+    <Compile Include="common\AppConfig.cs" />
+    <Compile Include="common\AppConstants.cs" />
+    <Compile Include="common\Base64Encoder.cs" />
+    <Compile Include="common\ConfigurationHelper.cs" />
+    <Compile Include="common\DBHelper.cs" />
+    <Compile Include="common\ExcelHelper\NPOIExcelHelp.cs" />
+    <Compile Include="common\ExcelHelper\NPOIHelper.cs" />
+    <Compile Include="common\filter.cs" />
+    <Compile Include="common\SqlServerHelper.cs" />
+    <Compile Include="Controllers\ApiAuthorizeAttribute.cs" />
+    <Compile Include="Controllers\apitestController.cs" />
+    <Compile Include="Controllers\AssemblyController.cs" />
+    <Compile Include="Controllers\BootstrapMutiTreeController.cs" />
+    <Compile Include="Controllers\ComonTestController.cs" />
+    <Compile Include="Controllers\consoletextController.cs" />
+    <Compile Include="Controllers\DelegateController.cs" />
+    <Compile Include="Controllers\downloadController.cs" />
+    <Compile Include="Controllers\filtersController.cs" />
+    <Compile Include="Controllers\GitController.cs" />
+    <Compile Include="Controllers\JavascriptObjectController.cs" />
+    <Compile Include="Controllers\JqueryController.cs" />
+    <Compile Include="Controllers\LogController.cs" />
+    <Compile Include="Controllers\nettotalController.cs" />
+    <Compile Include="Controllers\nodejs\nodejsController.cs" />
+    <Compile Include="Controllers\NPOIForExcelController.cs" />
+    <Compile Include="Controllers\PetController.cs" />
+    <Compile Include="Controllers\QueryableExtension.cs" />
+    <Compile Include="Controllers\spantimeController.cs" />
+    <Compile Include="Controllers\TestController.cs" />
+    <Compile Include="Controllers\testwebsocketController.cs" />
+    <Compile Include="Controllers\TupleController.cs" />
+    <Compile Include="Controllers\uploadifyImgController.cs" />
+    <Compile Include="Controllers\uploadimgForfileController.cs" />
+    <Compile Include="Controllers\uploadSingleImgController.cs" />
+    <Compile Include="Controllers\webServiceController.cs" />
+    <Compile Include="Controllers\websocketController.cs" />
+    <Compile Include="Controllers\xpController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Mapping\SysBadWordInfoMap.cs" />
+    <Compile Include="Models\Mapping\SysErrorLogMap.cs" />
+    <Compile Include="Models\Mapping\SysJobLevelMap.cs" />
+    <Compile Include="Models\Mapping\SysMenuFunctionMap.cs" />
+    <Compile Include="Models\Mapping\SysMenuMap.cs" />
+    <Compile Include="Models\Mapping\SysOrganizationMap.cs" />
+    <Compile Include="Models\Mapping\SysOrganizationTypeMap.cs" />
+    <Compile Include="Models\Mapping\SysRoleMap.cs" />
+    <Compile Include="Models\Mapping\SysRolePermissionMap.cs" />
+    <Compile Include="Models\Mapping\SysSettingMap.cs" />
+    <Compile Include="Models\Mapping\SysSettingTypeMap.cs" />
+    <Compile Include="Models\Mapping\SysUserMap.cs" />
+    <Compile Include="Models\Mapping\SysUserRoleMap.cs" />
+    <Compile Include="Models\Mapping\T_BottleBoxRelationshipMap.cs" />
+    <Compile Include="Models\Mapping\T_OldDataErrorRecordMap.cs" />
+    <Compile Include="Models\Mapping\T_ProductCategoryMap.cs" />
+    <Compile Include="Models\Mapping\T_ProductMap.cs" />
+    <Compile Include="Models\Mapping\T_ProductRelationshipMap.cs" />
+    <Compile Include="Models\Mapping\T_ProductSpecificationMap.cs" />
+    <Compile Include="Models\Mapping\T_ProductVersionsMap.cs" />
+    <Compile Include="Models\Mapping\T_ScanCodeRecordMap.cs" />
+    <Compile Include="Models\Mapping\T_TraceCodeDetailMap.cs" />
+    <Compile Include="Models\Mapping\T_TraceCodeImportRecordMap.cs" />
+    <Compile Include="Models\Mapping\T_TraceCodesMap.cs" />
+    <Compile Include="Models\Mapping\T_UserLogMap.cs" />
+    <Compile Include="Models\Mapping\ViewProductCategoryMap.cs" />
+    <Compile Include="Models\Mapping\ViewProductMap.cs" />
+    <Compile Include="Models\Mapping\ViewSysJobLevelMap.cs" />
+    <Compile Include="Models\Mapping\ViewSysMenuMap.cs" />
+    <Compile Include="Models\Mapping\ViewSysOrganizationMap.cs" />
+    <Compile Include="Models\Mapping\ViewSysSettingMap.cs" />
+    <Compile Include="Models\Mapping\ViewSysUserMap.cs" />
+    <Compile Include="Models\Mapping\ViewTraceCodeDetailMap.cs" />
+    <Compile Include="Models\Mapping\ViewTraceCodeDetailQRMap.cs" />
+    <Compile Include="Models\Mapping\ViewTraceCodeDetailXTMap.cs" />
+    <Compile Include="Models\Mapping\ViewTraceCodeMap.cs" />
+    <Compile Include="Models\Mapping\ViewUserLogMap.cs" />
+    <Compile Include="Models\SysBadWordInfo.cs" />
+    <Compile Include="Models\SysErrorLog.cs" />
+    <Compile Include="Models\SysJobLevel.cs" />
+    <Compile Include="Models\SysMenu.cs" />
+    <Compile Include="Models\SysMenuFunction.cs" />
+    <Compile Include="Models\SysOrganization.cs" />
+    <Compile Include="Models\SysOrganizationType.cs" />
+    <Compile Include="Models\SysRole.cs" />
+    <Compile Include="Models\SysRolePermission.cs" />
+    <Compile Include="Models\SysSetting.cs" />
+    <Compile Include="Models\SysSettingType.cs" />
+    <Compile Include="Models\SysUser.cs" />
+    <Compile Include="Models\SysUserRole.cs" />
+    <Compile Include="Models\T_BottleBoxRelationship.cs" />
+    <Compile Include="Models\T_OldDataErrorRecord.cs" />
+    <Compile Include="Models\T_Product.cs" />
+    <Compile Include="Models\T_ProductCategory.cs" />
+    <Compile Include="Models\T_ProductRelationship.cs" />
+    <Compile Include="Models\T_ProductSpecification.cs" />
+    <Compile Include="Models\T_ProductVersions.cs" />
+    <Compile Include="Models\T_ScanCodeRecord.cs" />
+    <Compile Include="Models\T_TraceCodeDetail.cs" />
+    <Compile Include="Models\T_TraceCodeImportRecord.cs" />
+    <Compile Include="Models\T_TraceCodes.cs" />
+    <Compile Include="Models\T_UserLog.cs" />
+    <Compile Include="Models\ViewProduct.cs" />
+    <Compile Include="Models\ViewProductCategory.cs" />
+    <Compile Include="Models\ViewSysJobLevel.cs" />
+    <Compile Include="Models\ViewSysMenu.cs" />
+    <Compile Include="Models\ViewSysOrganization.cs" />
+    <Compile Include="Models\ViewSysSetting.cs" />
+    <Compile Include="Models\ViewSysUser.cs" />
+    <Compile Include="Models\ViewTraceCode.cs" />
+    <Compile Include="Models\ViewTraceCodeDetail.cs" />
+    <Compile Include="Models\ViewTraceCodeDetailQR.cs" />
+    <Compile Include="Models\ViewTraceCodeDetailXT.cs" />
+    <Compile Include="Models\ViewUserLog.cs" />
+    <Compile Include="Models\WYTraceCodeSystemContext.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service References\ServiceReference\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="WebService1.asmx.cs">
+      <DependentUpon>WebService1.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="WebSocketHandler.ashx.cs">
+      <DependentUpon>WebSocketHandler.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="websocketService\TestCommand.cs" />
+    <Compile Include="websocketService\TestServer.cs" />
+    <Compile Include="websocketService\TestSession.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
+    <Content Include="Areas\study\Content\echarts.js" />
+    <Content Include="Areas\study\Content\ztreeandhighcharts\CSS\demo.css" />
+    <Content Include="Areas\study\Content\ztreeandhighcharts\CSS\zTreeStyle\img\diy\1_close.png" />
+    <Content Include="Areas\study\Content\ztreeandhighcharts\CSS\zTreeStyle\img\diy\1_open.png" />
+    <Content Include="Areas\study\Content\ztreeandhighcharts\CSS\zTreeStyle\img\diy\2.png" />
+    <Content Include="Areas\study\Content\ztreeandhighcharts\CSS\zTreeStyle\img\diy\3.png" />
+    <Content Include="Areas\study\Content\ztreeandhighcharts\CSS\zTreeStyle\img\diy\4.png" />
+    <Content Include="Areas\study\Content\ztreeandhighcharts\CSS\zTreeStyle\img\diy\5.png" />
+    <Content Include="Areas\study\Content\ztreeandhighcharts\CSS\zTreeStyle\img\diy\6.png" />
+    <Content Include="Areas\study\Content\ztreeandhighcharts\CSS\zTreeStyle\img\diy\7.png" />
+    <Content Include="Areas\study\Content\ztreeandhighcharts\CSS\zTreeStyle\img\diy\8.png" />
+    <Content Include="Areas\study\Content\ztreeandhighcharts\CSS\zTreeStyle\img\diy\9.png" />
+    <Content Include="Areas\study\Content\ztreeandhighcharts\CSS\zTreeStyle\img\line_conn.gif" />
+    <Content Include="Areas\study\Content\ztreeandhighcharts\CSS\zTreeStyle\img\loading.gif" />
+    <Content Include="Areas\study\Content\ztreeandhighcharts\CSS\zTreeStyle\img\zTreeStandard.gif" />
+    <Content Include="Areas\study\Content\ztreeandhighcharts\CSS\zTreeStyle\img\zTreeStandard.png" />
+    <Content Include="Areas\study\Content\ztreeandhighcharts\CSS\zTreeStyle\zTreeStyle.css" />
+    <Content Include="Areas\study\Content\ztreeandhighcharts\JS\exporting.js" />
+    <Content Include="Areas\study\Content\ztreeandhighcharts\JS\grid-light.js" />
+    <Content Include="Areas\study\Content\ztreeandhighcharts\JS\highcharts.js" />
+    <Content Include="Areas\study\Content\ztreeandhighcharts\JS\jquery-1.4.4.min.js" />
+    <Content Include="Areas\study\Content\ztreeandhighcharts\JS\jquery.ztree.core-3.5.js" />
+    <Content Include="Content\css\autocomplete.css" />
+    <Content Include="Content\css\autocomplete\autocomplete.css" />
+    <Content Include="Content\css\autocomplete\autocomplete.min.css" />
+    <Content Include="Content\css\autocomplete\style.css" />
+    <Content Include="Content\css\bootstrap.min.css" />
+    <Content Include="Content\css\index.css" />
+    <Content Include="Content\css\Organization.css" />
+    <Content Include="Content\css\style.css" />
+    <Content Include="Content\css\uploadsingleimg\style.css" />
+    <Content Include="Content\css\uploadsingleimg\uploadSingleImg.css" />
+    <Content Include="Content\img\adaptive_enable.png" />
+    <Content Include="Content\img\administrators.png" />
+    <Content Include="Content\img\black_arrow_down.png" />
+    <Content Include="Content\img\close.png" />
+    <Content Include="Content\img\close_eyes.png" />
+    <Content Include="Content\img\delete.png" />
+    <Content Include="Content\img\delete1.png" />
+    <Content Include="Content\img\delete_hight_lighted.png" />
+    <Content Include="Content\img\diamond.png" />
+    <Content Include="Content\img\diamond1.png" />
+    <Content Include="Content\img\disable.png" />
+    <Content Include="Content\img\down_one.png" />
+    <Content Include="Content\img\edit.png" />
+    <Content Include="Content\img\edit_menu.png" />
+    <Content Include="Content\img\er.png" />
+    <Content Include="Content\img\fff.jpg" />
+    <Content Include="Content\img\file.png" />
+    <Content Include="Content\img\generate_document.png" />
+    <Content Include="Content\img\gray_down.png" />
+    <Content Include="Content\img\gray_triangle_up.png" />
+    <Content Include="Content\img\grey_squares.png" />
+    <Content Include="Content\img\home_hand.png" />
+    <Content Include="Content\img\home_page.png" />
+    <Content Include="Content\img\home_welcome.png" />
+    <Content Include="Content\img\login_user_name.png" />
+    <Content Include="Content\img\login_user_name_hight_lighted.png" />
+    <Content Include="Content\img\logo.png" />
+    <Content Include="Content\img\menu.png" />
+    <Content Include="Content\img\menu_transverse.png" />
+    <Content Include="Content\img\modify_password.png" />
+    <Content Include="Content\img\navigation_menu.png" />
+    <Content Include="Content\img\not-displayed_in_menu_list - 1.png" />
+    <Content Include="Content\img\not-displayed_in_menu_list.png" />
+    <Content Include="Content\img\not-displayed_in_menu_list_hight_lighted.png" />
+    <Content Include="Content\img\open_eyes.png" />
+    <Content Include="Content\img\page_back.png" />
+    <Content Include="Content\img\page_forward.png" />
+    <Content Include="Content\img\page_go.png" />
+    <Content Include="Content\img\page_omission.png" />
+    <Content Include="Content\img\personal_information.png" />
+    <Content Include="Content\img\popup.png" />
+    <Content Include="Content\img\project_management.png" />
+    <Content Include="Content\img\reset_password.png" />
+    <Content Include="Content\img\self_adaption.png" />
+    <Content Include="Content\img\set_role.png" />
+    <Content Include="Content\img\sign_in_logo.png" />
+    <Content Include="Content\img\sign_in_password.png" />
+    <Content Include="Content\img\sign_in_user_name.png" />
+    <Content Include="Content\img\sign_out.png" />
+    <Content Include="Content\img\slide_bar.png" />
+    <Content Include="Content\img\slide_gray.png" />
+    <Content Include="Content\img\statistical_management.png" />
+    <Content Include="Content\img\system_management.png" />
+    <Content Include="Content\img\The_login.png" />
+    <Content Include="Content\img\the_login_password.png" />
+    <Content Include="Content\img\the_login_password_hight_lighted.png" />
+    <Content Include="Content\img\time.png" />
+    <Content Include="Content\img\time_management.png" />
+    <Content Include="Content\img\to_examine.png" />
+    <Content Include="Content\img\upload_black_icon.png" />
+    <Content Include="Content\img\upload_white_icon.png" />
+    <Content Include="Content\img\upward.png" />
+    <Content Include="Content\img\user_login_background.png" />
+    <Content Include="Content\js\ajaxfileupload.js" />
+    <Content Include="Content\js\api.js" />
+    <Content Include="Content\js\autocomplete\autocomplete.min.js" />
+    <Content Include="Content\js\autocomplete\jquery.autocomplete.js" />
+    <Content Include="Content\js\common.js" />
+    <Content Include="Content\js\Event.js" />
+    <Content Include="Content\js\index.js" />
+    <Content Include="Content\js\jquery-3.2.1.js" />
+    <Content Include="Content\js\jquery-qrcode.js" />
+    <Content Include="Content\js\uploadsingleimg\ajaxfileupload.js" />
+    <Content Include="Content\js\uploadsingleimg\pictureHandle.js" />
+    <Content Include="Content\js\uploadsingleimg\tools.js" />
+    <Content Include="Content\lib\bootstrap\bootstrap-treeview.js" />
+    <Content Include="Content\lib\bootstrap\bootstrap.css" />
+    <Content Include="Content\lib\bootstrap\bootstrap.js" />
+    <Content Include="Content\lib\bootstrap\bootstrap.min.css" />
+    <Content Include="Content\lib\bootstrap\bootstrap.min.js" />
+    <Content Include="Content\lib\compatibility\DD_belatedPNG_0.0.8a-min.js" />
+    <Content Include="Content\lib\compatibility\html5.js" />
+    <Content Include="Content\lib\compatibility\PIE_IE678.js" />
+    <Content Include="Content\lib\compatibility\respond.min.js" />
+    <Content Include="Content\lib\jquery\jquery-2.1.4.min.js" />
+    <Content Include="Content\lib\layer\layer-v3.0.1\demo.html" />
+    <Content Include="Content\lib\layer\layer-v3.0.1\layer\layer.js" />
+    <Content Include="Content\lib\layer\layer-v3.0.1\layer\mobile\layer.js" />
+    <Content Include="Content\lib\layer\layer-v3.0.1\layer\mobile\need\layer.css" />
+    <Content Include="Content\lib\layer\layer-v3.0.1\layer\skin\default\icon-ext.png" />
+    <Content Include="Content\lib\layer\layer-v3.0.1\layer\skin\default\icon.png" />
+    <Content Include="Content\lib\layer\layer-v3.0.1\layer\skin\default\layer.css" />
+    <Content Include="Content\lib\layer\layer-v3.0.1\layer\skin\default\loading-0.gif" />
+    <Content Include="Content\lib\layer\layer-v3.0.1\layer\skin\default\loading-1.gif" />
+    <Content Include="Content\lib\layer\layer-v3.0.1\layer\skin\default\loading-2.gif" />
+    <Content Include="Content\lib\layer\layer-v3.0.1\更新日志.txt" />
+    <Content Include="Content\lib\My97DatePicker\calendar.js" />
+    <Content Include="Content\lib\My97DatePicker\lang\en.js" />
+    <Content Include="Content\lib\My97DatePicker\lang\zh-cn.js" />
+    <Content Include="Content\lib\My97DatePicker\lang\zh-tw.js" />
+    <Content Include="Content\lib\My97DatePicker\skin\datePicker.gif" />
+    <Content Include="Content\lib\My97DatePicker\skin\default\datepicker.css" />
+    <Content Include="Content\lib\My97DatePicker\skin\default\img.gif" />
+    <Content Include="Content\lib\My97DatePicker\skin\WdatePicker.css" />
+    <Content Include="Content\lib\My97DatePicker\skin\whyGreen\bg.jpg" />
+    <Content Include="Content\lib\My97DatePicker\skin\whyGreen\datepicker.css" />
+    <Content Include="Content\lib\My97DatePicker\skin\whyGreen\img.gif" />
+    <Content Include="Content\lib\My97DatePicker\WdatePicker.js" />
+    <Content Include="Content\lib\My97DatePicker\开发包\lang\en.js" />
+    <Content Include="Content\lib\My97DatePicker\开发包\lang\zh-cn.js" />
+    <Content Include="Content\lib\My97DatePicker\开发包\lang\zh-tw.js" />
+    <Content Include="Content\lib\My97DatePicker\开发包\readme.txt" />
+    <Content Include="Content\lib\My97DatePicker\开发包\skin\datePicker.gif" />
+    <Content Include="Content\lib\My97DatePicker\开发包\skin\default\datepicker.css" />
+    <Content Include="Content\lib\My97DatePicker\开发包\skin\default\img.gif" />
+    <Content Include="Content\lib\My97DatePicker\开发包\skin\WdatePicker.css" />
+    <Content Include="Content\lib\My97DatePicker\开发包\skin\whyGreen\bg.jpg" />
+    <Content Include="Content\lib\My97DatePicker\开发包\skin\whyGreen\datepicker.css" />
+    <Content Include="Content\lib\My97DatePicker\开发包\skin\whyGreen\img.gif" />
+    <Content Include="Content\uploadify\jquery.uploadify1.js" />
+    <Content Include="Content\uploadify\uploadify.swf" />
+    <Content Include="Content\uploadify\uploadimg.gif" />
+    <Content Include="Global.asax" />
+    <Content Include="node.js" />
+    <Content Include="Properties\DataSources\System.Data.DataSet.datasource" />
+    <Content Include="Areas\Vue\Views\Vue\Index.cshtml">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="ApplicationInsights.config" />
+    <None Include="Service References\ServiceReference\WeatherWS.disco" />
+    <None Include="Service References\ServiceReference\configuration91.svcinfo" />
+    <None Include="Service References\ServiceReference\configuration.svcinfo" />
+    <None Include="Service References\ServiceReference\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config" />
+    <Content Include="WebService1.asmx" />
+    <None Include="Service References\ServiceReference\WeatherWS.wsdl" />
+    <Content Include="Views\JavascriptObject\ObjectExtend.cshtml" />
+    <Content Include="Views\alittle\Index.cshtml" />
+    <Content Include="Views\mvc\test\Index.cshtml" />
+    <Content Include="Views\JavascriptObject\NumAndBool.cshtml" />
+    <Content Include="Views\JavascriptObject\ObjectPrototype.cshtml" />
+    <Content Include="Views\nodejs\Index.cshtml" />
+    <Content Include="Views\websocket\Index.cshtml" />
+    <Content Include="WebSocketHandler.ashx" />
+    <Content Include="Views\testwebsocket\Index.cshtml" />
+    <Content Include="supersocket.cmd" />
+    <Content Include="supersocket.sh" />
+    <Content Include="Views\JavascriptObject\test.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Areas\study\Models\" />
+    <Folder Include="Areas\study\Views\Shared\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Jquery\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\BootstrapMutiTree\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\img\Thumbs.db" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\lib\layer\layer-v3.0.1\文档\jquery下载.url" />
+    <Content Include="Content\lib\layer\layer-v3.0.1\文档\layer官网.url" />
+    <Content Include="Content\lib\layer\layer-v3.0.1\文档\layer文档.url" />
+    <Content Include="Content\lib\layer\layer-v3.0.1\文档\Layui社区.url" />
+    <Content Include="Content\lib\layer\layer-v3.0.1\获得layim.url" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Jquery\autocomplete.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Test\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\uploadSingleImg\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\uploadifyImg\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\JavascriptObject\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\JavascriptObject\baseCourse.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\study\Views\Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\study\Views\echarts\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\uploadimgForfile\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\study\Views\Ztreeandhighcharts\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\JavascriptObject\Event.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\JavascriptObject\FormValid.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\JavascriptObject\CloseBag.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\ServiceReference\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\新项目\Jeno.App.Common\Jeno.App.Common.csproj">
+      <Project>{209c3c8b-b35e-4cca-a822-6df87f1d0735}</Project>
+      <Name>Jeno.App.Common</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>28072</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:28066/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

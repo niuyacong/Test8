@@ -1,0 +1,143 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <title> ZTREE DEMO - Standard Data </title>
+    <!-- ztree树脚本-->
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <link href="~/Areas/study/Content/ztreeandhighcharts/CSS/demo.css" rel="stylesheet" />
+    <link href="~/Areas/study/Content/ztreeandhighcharts/CSS/zTreeStyle/zTreeStyle.css" rel="stylesheet" />
+    <script src="~/Areas/study/Content/ztreeandhighcharts/JS/jquery-1.4.4.min.js"></script>
+    <script src="~/Areas/study/Content/ztreeandhighcharts/JS/jquery.ztree.core-3.5.js"></script>
+    <!-- 折线图脚本-->
+    <script src="~/Areas/study/Content/ztreeandhighcharts/JS/highcharts.js"></script>
+    <script src="~/Areas/study/Content/ztreeandhighcharts/JS/exporting.js"></script>
+    <script src="~/Areas/study/Content/ztreeandhighcharts/JS/grid-light.js"></script>
+    <script type="text/javascript">
+        var box = [];
+        var bottle = [];
+		var setting = {	};
+		var zNodes = "";
+		var str1 = "";
+		$.ajax({
+		    type: "GET",
+		    dataType : "text",
+		    url: "/nyc/GetTreeList",
+		    success: function (data) {
+		        zNodes = eval("(" + data + ")");
+		        print(zNodes);
+		    }
+		});
+		function print(zNodes) {
+		    $.fn.zTree.init($("#treeDemo"), setting, zNodes);
+		}
+		function here(topId,secondId) {
+		    $.ajax({
+		        type: "GET",
+		        data:{
+		            topId: topId,
+		            secondId: secondId
+		        },
+		        dataType: "json",
+		        url: "/nyc/CurrentMonthCount",
+		        success: function (data) {
+		            box = eval("(" + data.box + ")");
+		            bottle = eval("(" + data.bottle + ")");
+		            refresh(str1,box, bottle);
+		        }
+		    });
+		}
+
+		$(function () {
+		    var d = new Date();
+		    var year = d.getYear();
+		    var month = d.getMonth();
+		    if (month < 10) {
+		        month += 1;
+		    }
+		    var temp = new Date(year, month, 0);
+		    var daycount = temp.getDate();
+		    var str = "";
+		    for (var i = 1; i < daycount + 1; i++) {
+                str+="\'"+i+"日\',"
+		    }
+		    var html = "[" + str.substring(0,str.length-1) + "]";
+		    str1 = eval('(' + html.toString() + ')');
+		    refresh(str1,box,bottle);
+		});
+		function refresh(str1, box, bottle) {
+		    $('#container').highcharts({
+		        chart: {
+		            type: 'line'
+		        },
+		        title: {
+		            text: '月生成追溯码统计'
+		        },
+		        subtitle: {
+		            text: '数据来源:威远生成追溯码'
+		        },
+		        xAxis: {
+		            categories: str1
+		        },
+		        yAxis: {
+		            title: {
+		                text: '次数'
+		            }
+		        },
+		        plotOptions: {
+		            line: {
+		                dataLabels: {
+		                    enabled: true          // 开启数据标签
+		                },
+		                enableMouseTracking: false // 关闭鼠标跟踪，对应的提示框、点击事件会失效
+		            }
+		        },
+		        series: [{
+		            name: '箱码',
+		            data: box
+		        }, {
+		            name: '瓶码',
+		            data: bottle
+		        }]
+		    });
+		}
+		//-->
+    </script>
+</head>
+<body>
+
+    @*<div class="content_wrap">
+            <div class="zTreeDemoBackground left">
+                <ul id="treeDemo" class="ztree"></ul>
+            </div>
+            <div class="right">
+            <div id="container" style="width:1000px;"></div>
+            </div>
+        </div>*@
+
+    <div class="menuBox">
+        <div class="panel panel-default " style="width:400px;">
+            <div class="panel-heading skinBackColor skinColor">
+                <h3 class="panel-title ">
+                    品类品规树形图
+                </h3>
+            </div>
+            <div class="panel-body addMenu">
+                <ul id="treeDemo" class="ztree"></ul>
+            </div>
+        </div>
+        <div class="panel panel-default " style="width:1250px;">
+            <div class="panel-heading skinBackColor skinColor">
+                <h3 class="panel-title">
+                    产品追溯码月统计
+                </h3>
+            </div>
+            <div class="panel-body">
+                <div id="container" style="width:1200px;"></div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
