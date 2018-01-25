@@ -177,6 +177,7 @@
     <Compile Include="Areas\enums\enumController.cs" />
     <Compile Include="Areas\littlewx\HttpsPostController.cs" />
     <Compile Include="Areas\littlewx\littleController.cs" />
+    <Compile Include="Areas\Md5Util.cs" />
     <Compile Include="Areas\MessageQueue\MessageQueueController.cs" />
     <Compile Include="Areas\readtextBYtab\readandwriteController.cs" />
     <Compile Include="Areas\Redis\redisTestController.cs" />
@@ -185,6 +186,7 @@
     <Compile Include="Areas\study\Controllers\echartsController.cs" />
     <Compile Include="Areas\study\Controllers\ZtreeandhighchartsController.cs" />
     <Compile Include="Areas\study\studyAreaRegistration.cs" />
+    <Compile Include="Areas\TzkClient.cs" />
     <Compile Include="Areas\Vue\VueController.cs" />
     <Compile Include="Areas\webnet.cs" />
     <Compile Include="Areas\wxshare\shareController.cs" />
